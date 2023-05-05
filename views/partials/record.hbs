@@ -1,0 +1,6 @@
+<div class="record">
+   <button class="record__name {{#if @root.btnState.disabled}}disabled{{/if}}" id={{id}}>
+      <a {{#if @root.btnState.enabled}}href='/update?id={{id}}' {{/if}}>{{name}}</a>
+      <a {{#if @root.btnState.enabled}}href='/update?id={{id}}' {{/if}}>{{number}}</a>
+   </button>
+</div>

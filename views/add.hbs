@@ -1,0 +1,17 @@
+{{!-- <h3>Add</h3> --}}
+<div class="records--wrapper">
+   {{#each numbers}}
+   {{>record}}
+   {{/each}}
+</div>
+
+<form method="post">
+   <div class="inputs--wrapper">
+      <input type="text" name="name" required placeholder="ФИО">
+      <input type="number" name="number" required min="80000000000" max="80339999999" placeholder="Тел">
+   </div>
+   <div class="btns--wrapper">
+      <button class="btn-add-addHbs" onclick="addNewNumber()" type="submit">Добавить</button>
+      <button class="btn-refuse-addHbs" onclick="{{refuse}}">Отказаться</button>
+   </div>
+</form>

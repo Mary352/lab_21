@@ -1,0 +1,22 @@
+{{!-- <h3>Add</h3> --}}
+<div class="records--wrapper">
+   {{#each numbers}}
+   {{>record}}
+   {{/each}}
+</div>
+
+<form method="post">
+   <div class="inputs--wrapper">
+      {{#with recordForInput}}
+      <input type="text" value='{{id}}' id="idInput" name="id" placeholder="id">
+      <input type="text" required oninput="disableBtnDelete()" value='{{name}}' id="name" name="name" placeholder="ФИО">
+      <input type="number" required oninput="disableBtnDelete()" value='{{number}}' id="number" min="80000000000"
+         max="80339999999" name="number" placeholder="Тел">
+      {{/with}}
+   </div>
+   <div class="btns-upd--wrapper">
+      <button class="btn-update-updHbs" type="submit" onclick="updateNumber()">Изменить</button>
+      <button class="btn-delete-updHbs" type="submit" onclick="deleteNumber()">Удалить</button>
+      <button class="btn-refuse-updHbs" onclick="{{refuse}}">Отказаться</button>
+   </div>
+</form>

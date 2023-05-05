@@ -1,0 +1,124 @@
+/* null style */
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   text-decoration: none;
+   /* font-family: 'Raleway', sans-serif; */
+   outline: none;
+}
+
+body {
+   background-color: #F3F3F3;
+}
+
+ul,
+ol,
+li {
+   list-style: none;
+}
+
+a {
+   display: block;
+   color: #000;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   font-weight: normal;
+   font-style: normal;
+}
+
+/* null style end */
+
+#idInput {
+   display: none;
+}
+
+/* get.hbs */
+.records--wrapper {
+   width: 50%;
+   border: 1px solid #000;
+   margin: 50px auto 20px;
+   padding: 25px;
+   height: 350px;
+   overflow-y: scroll;
+}
+
+.btn-add-getHbs {
+   display: block;
+   width: 50%;
+   margin: 0 auto;
+   padding: 10px;
+   cursor: pointer;
+}
+
+.btn-add-getHbs a {
+   width: 100%;
+   height: 100%;
+}
+
+/* record.hbs */
+.record__name.disabled {
+   opacity: 0.4;
+}
+
+.record button {
+   background-color: transparent;
+   border: 1px solid #000;
+   display: flex;
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 5px;
+   /* justify-content: space-around; */
+   /* cursor: pointer; */
+}
+
+.record button a {
+   cursor: pointer;
+   width: 50%;
+   height: 100%;
+}
+
+/* add.hbs */
+.inputs--wrapper {
+   width: 50%;
+   border: 1px solid #000;
+   margin: 0 auto 15px;
+}
+
+.inputs--wrapper input {
+   border: none;
+   width: calc(50% - 2px);
+   text-align: center;
+   background-color: transparent;
+   padding: 15px;
+}
+
+.btns--wrapper {
+   width: 50%;
+   margin: 0 auto;
+}
+
+.btns--wrapper button {
+   width: calc(50% - 2px);
+   padding: 10px;
+   cursor: pointer;
+}
+
+/* update.hbs */
+.btns-upd--wrapper {
+   width: 50%;
+   margin: 0 auto;
+}
+
+.btns-upd--wrapper button {
+   width: calc((100% / 3) - 3px);
+   padding: 10px;
+   cursor: pointer;
+}
