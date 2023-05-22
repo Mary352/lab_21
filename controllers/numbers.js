@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
 let numbersArr = require('../model/numbers.json') || [];
@@ -12,7 +12,7 @@ const saveNumbersArrToFile = async (numbersArr) => {
    // console.log(path.join(dirUpperControllersName, 'model', 'numbers.json'));
    const pathToFile = path.join(dirUpperControllersName, 'model', 'numbers.json');
    const json = JSON.stringify(numbersArr)
-   fs.writeFile(pathToFile, json, 'utf8', () => { })
+   await fs.writeFile(pathToFile, json, 'utf8', () => { })
 }
 
 module.exports = {
