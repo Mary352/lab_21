@@ -1,18 +1,27 @@
 const fs = require('fs').promises;
 const path = require('path');
 
-let numbersArr = require('../model/numbers.json') || [];
+// let numbersArr = require('../model/numbers.json') || [];
 let message = {
    error: ''
 }
 
-const saveNumbersArrToFile = async (numbersArr) => {
+const saveNumbersArrToFile = async (numbersArrParam) => {
    const dirUpperControllersName = path.dirname(__dirname);
    // console.log(path.dirname(__dirname));
    // console.log(path.join(dirUpperControllersName, 'model', 'numbers.json'));
    const pathToFile = path.join(dirUpperControllersName, 'model', 'numbers.json');
-   const json = JSON.stringify(numbersArr)
+   const json = JSON.stringify(numbersArrParam)
    await fs.writeFile(pathToFile, json, 'utf8', () => { })
+}
+
+const getNumbersArrFromFile = async () => {
+   const dirUpperControllersName = path.dirname(__dirname);
+   const pathToFile = path.join(dirUpperControllersName, 'model', 'numbers.json');
+   const numbersArr = await fs.readFile(pathToFile, 'utf8');
+   console.log("🚀 ~ file: numbers.js:22 ~ getNumbersArrFromFile ~ numbersArr:", numbersArr)
+   // const arr = numbersArr.map(elem => JSON.)
+   return JSON.parse(numbersArr)
 }
 
 module.exports = {
@@ -21,7 +30,13 @@ module.exports = {
          enabled: true,
          disabled: false
       }
-      saveNumbersArrToFile(numbersArr)
+
+      // const pathToFile = path.join(dirUpperControllersName, 'model', 'numbers.json');
+      const numbersArr = await getNumbersArrFromFile();
+
+      console.log("🚀 ~ file: numbers.js:36 ~ getFormGet: ~ numbersArr:", numbersArr)
+      // saveNumbersArrToFile(numbersArr)
+
       res.render('get.hbs', { numbers: numbersArr, btnState: btnState })
    },
 
@@ -30,6 +45,8 @@ module.exports = {
          enabled: false,
          disabled: true
       }
+
+      const numbersArr = await getNumbersArrFromFile();
       res.render('add.hbs', {
          numbers: numbersArr, btnState: btnState, helpers: {
             refuse: () => "window.location.href = '/'"
@@ -39,12 +56,14 @@ module.exports = {
 
    getFormUpdate: async (req, res) => {
       // console.log(req.query.id)
+      const numbersArr = await getNumbersArrFromFile();
       const recordForInput = numbersArr.find(number => String(number.id) === req.query.id)
       // console.log(recordForInput);
       const btnState = {
          enabled: false,
          disabled: true
       }
+
       res.render('update.hbs', {
          numbers: numbersArr, recordForInput: recordForInput, btnState: btnState, helpers: {
             refuse: () => "window.location.href = '/'"
@@ -53,7 +72,11 @@ module.exports = {
    },
 
    postRecord: async (req, res) => {
+      const numbersArr = await getNumbersArrFromFile();
+
       if (req.body.name && req.body.number) {
+
+
          const arrSortedCopy = [...numbersArr];
          arrSortedCopy.sort((a, b) => a.id > b.id ? -1 : 1);
          const maxId = arrSortedCopy[0].id;
@@ -96,7 +119,7 @@ module.exports = {
 
    putRecord: async (req, res) => {
       console.log(req.body);
-
+      const numbersArr = await getNumbersArrFromFile();
       if (req.body.name && req.body.number) {
          const btnState = {
             enabled: true,
@@ -132,6 +155,7 @@ module.exports = {
 
    deleteRecord: async (req, res) => {
       console.log('req.body', req.body);
+      const numbersArr = await getNumbersArrFromFile();
 
       const numbersArrWithoutDeleted = numbersArr.filter(number => String(number.id) !== req.body.id);
 
