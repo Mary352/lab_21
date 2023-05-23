@@ -5,7 +5,13 @@ const PORT = 3000;
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const hbs = require('express-handlebars').create({ extname: '.hbs' });
+const hbs = require('express-handlebars').create({
+   extname: '.hbs', helpers: {
+      refuse: () => {
+         return `<button type="reset" onclick="window.location.href='./'">Отказаться</button>`;
+      }
+   }
+});
 const numbersRouter = require('./routes/numbers').numbersRouter
 
 app.engine('.hbs', hbs.engine);

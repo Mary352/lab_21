@@ -48,9 +48,7 @@ module.exports = {
 
       const numbersArr = await getNumbersArrFromFile();
       res.render('add.hbs', {
-         numbers: numbersArr, btnState: btnState, helpers: {
-            refuse: () => "window.location.href = '/'"
-         }
+         numbers: numbersArr, btnState: btnState
       })
    },
 
@@ -65,9 +63,7 @@ module.exports = {
       }
 
       res.render('update.hbs', {
-         numbers: numbersArr, recordForInput: recordForInput, btnState: btnState, helpers: {
-            refuse: () => "window.location.href = '/'"
-         }
+         numbers: numbersArr, recordForInput: recordForInput, btnState: btnState
       })
    },
 
@@ -108,9 +104,7 @@ module.exports = {
          }
 
          res.render('add.hbs', {
-            numbers: numbersArr, btnState: btnState, helpers: {
-               refuse: () => "window.location.href = '/'"
-            }
+            numbers: numbersArr, btnState: btnState
          })
       }
 
@@ -120,6 +114,16 @@ module.exports = {
    putRecord: async (req, res) => {
       console.log(req.body);
       const numbersArr = await getNumbersArrFromFile();
+
+      console.log('req', Object.keys(req));
+      console.log('req query', req.query);
+      console.log('req.url', req.url);
+
+
+      // if (!req.query) {
+      //    res.render('get.hbs', { numbers: numbersArr, btnState: btnState })
+      // }
+      // else 
       if (req.body.name && req.body.number) {
          const btnState = {
             enabled: true,
@@ -145,9 +149,7 @@ module.exports = {
          }
 
          res.render('update.hbs', {
-            numbers: numbersArr, btnState: btnState, helpers: {
-               refuse: () => "window.location.href = '/'"
-            }
+            numbers: numbersArr, btnState: btnState
          })
       }
 
